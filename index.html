@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 صندوق أسرار فطوم</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e7,#ffeef7,#fff9fc);
+overflow:hidden;
+
+}
+
+/* الخلفية */
+
+.bg{
+
+position:absolute;
+width:100%;
+height:100%;
+
+}
+
+.bg span{
+
+position:absolute;
+font-size:25px;
+animation:up 8s linear infinite;
+opacity:.7;
+
+}
+
+.bg span:nth-child(1){left:8%;animation-delay:0s;}
+.bg span:nth-child(2){left:20%;animation-delay:2s;}
+.bg span:nth-child(3){left:35%;animation-delay:4s;}
+.bg span:nth-child(4){left:55%;animation-delay:1s;}
+.bg span:nth-child(5){left:75%;animation-delay:5s;}
+.bg span:nth-child(6){left:90%;animation-delay:3s;}
+
+@keyframes up{
+
+0%{
+transform:translateY(120vh);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+
+}
+
+.card{
+
+width:420px;
+max-width:90%;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+text-align:center;
+z-index:2;
+animation:float 3s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+}
+
+h1{
+
+color:#ff4f8f;
+margin-bottom:20px;
+
+}
+
+#content{
+
+min-height:260px;
+font-size:20px;
+line-height:1.9;
+color:#555;
+
+}
+
+.gift{
+
+font-size:95px;
+cursor:pointer;
+transition:.4s;
+
+}
+
+.gift:hover{
+
+transform:scale(1.15) rotate(8deg);
+
+}
+
+button{
+
+display:none;
+margin-top:20px;
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#ff4f8f;
+color:white;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#ff2f78;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg">
+
+<span>💖</span>
+<span>✨</span>
+<span>🌸</span>
+<span>💕</span>
+<span>🎀</span>
+<span>⭐</span>
+
+</div>
+
+<div class="card">
+
+<h1>🎁 صندوق أسرار فطوم</h1>
+
+<div id="content">
+
+<div class="gift" id="gift">
+
+🎁
+
+</div>
+
+<p>
+
+اضغطي على الهدية...
+
+علشان تبدأ المفاجأة. 🤍
+
+</p>
+
+</div>
+
+<button id="next">
+
+التالي ➜
+
+</button>
+<script>
+
+const messages = [
+
+`<h2>🌸 أهلًا يا فطوم</h2>
+
+<p>
+
+كل سنة وأنتِ بخير يا أجمل صاحبة. 🤍
+
+<br><br>
+
+الهدية دي بسيطة...
+
+لكن معمولة مخصوص ليكي.
+
+<br><br>
+
+يلا نكمل...
+
+</p>`,
+
+`<h2>💖 رسالة ١</h2>
+
+<p>
+
+عارفة؟
+
+<br><br>
+
+مش كل الناس بيكون عندهم صاحبة يفتخروا بيها.
+
+<br><br>
+
+وأنا من الناس المحظوظة...
+
+لإن عندي صاحبة زيك.
+
+<br><br>
+
+شكراً على كل الضحك...
+
+وكل المواقف الحلوة...
+
+وكل الذكريات اللي بينا.
+
+🌸
+
+</p>`,
+
+`<h2>✨ رسالة ٢</h2>
+
+<p>
+
+أتمنى السنة الجديدة...
+
+تكون بداية لكل حاجة جميلة.
+
+<br><br>
+
+نجاح...
+
+راحة...
+
+سعادة...
+
+وأيام أحلى بكتير.
+
+<br><br>
+
+وربنا يحققلك كل اللي نفسك فيه.
+
+🤍
+
+</p>`,
+
+`<h2>🌷 رسالة ٣</h2>
+
+<p>
+
+أوعي في يوم تشكي في نفسك.
+
+<br><br>
+
+إنتِ قوية.
+
+<br><br>
+
+وذكية.
+
+<br><br>
+
+وقادرة تعملي أي حاجة تحلمي بيها.
+
+<br><br>
+
+افتكري الكلام ده دايمًا.
+
+💖
+
+</p>`,
+
+`<h2>🎂 الرسالة الأخيرة</h2>
+
+<p>
+
+Happy Birthday يا فطوم ❤️
+
+<br><br>
+
+يمكن الهدية دي مش أغلى هدية...
+
+لكن والله كل كلمة فيها طالعة من قلبي.
+
+<br><br>
+
+أتمنى أشوفك دايمًا سعيدة.
+
+وأشوف ضحكتك منورة وشك.
+
+وأشوف كل حلم نفسك فيه بيتحقق.
+
+<br><br>
+
+شكراً إنك صاحبتي.
+
+وشكراً على كل الذكريات الجميلة.
+
+<br><br>
+
+ربنا يحفظك ويخليكي مبسوطة دايمًا.
+
+<br><br>
+
+🎉 كل سنة وأنتِ أجمل فطوم في الدنيا. 🎉
+
+<br><br>
+
+<b>Made with ❤️ by Amira</b>
+
+</p>`
+
+];
+
+const gift = document.getElementById("gift");
+const content = document.getElementById("content");
+const next = document.getElementById("next");
+
+let page = 0;
+
+gift.onclick = function(){
+
+content.innerHTML = messages[0];
+
+next.style.display = "inline-block";
+
+}
+
+next.onclick = function(){
+
+page++;
+
+if(page < messages.length){
+
+content.innerHTML = messages[page];
+
+}else{
+
+content.innerHTML = `
+<h2 style="color:#ff4f8f;">🎉 Happy Birthday 🎉</h2>
+
+<p>
+
+وصلتي للنهاية 🤍
+
+<br><br>
+
+أتمنى تكون الهدية عجبتك.
+
+<br><br>
+
+💖💖💖
+
+</p>
+`;
+
+next.style.display = "none";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
